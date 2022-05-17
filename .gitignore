@@ -1,0 +1,17 @@
+/node_modules
+/public/vendor
+/public/storage
+/storage/*.key
+/vendor
+/proxies
+proxies
+/.idea
+/.vscode
+.env
+.env.backup
+.phpunit.result.cache
+.php-cs-fixer.cache
+/.phpstorm.meta.php
+/_ide_helper.php
+cghooks.lock
+/hooks
