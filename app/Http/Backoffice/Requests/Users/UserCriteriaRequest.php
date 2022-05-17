@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Http\Backoffice\Requests\Users;
+
+use App\Http\Backoffice\Requests\BackofficeCriteriaRequest;
+use WorkshopBackoffice\Repositories\Criteria\Users\UserFilter;
+use WorkshopBackoffice\Repositories\Criteria\Users\UserSorting;
+
+class UserCriteriaRequest extends BackofficeCriteriaRequest
+{
+    protected function getFilterClass(): string
+    {
+        return UserFilter::class;
+    }
+
+    protected function getSortingClass(): string
+    {
+        return UserSorting::class;
+    }
+
+    protected function getSortingDefaults(): array
+    {
+        return [
+            UserSorting::FIRST_NAME => 'ASC',
+            UserSorting::LAST_NAME => 'ASC',
+        ];
+    }
+}
