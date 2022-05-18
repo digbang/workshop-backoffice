@@ -23,5 +23,11 @@ final class Permission
     public const OPERATOR_RESET_PASSWORD = 'backoffice.operators.reset-password';
     public const OPERATOR_RESEND_ACTIVATION = 'backoffice.operators.resend-activation';
 
+    public const GUEST_CATEGORY_LIST = 'backoffice.guest_categories.list';
+    public const GUEST_CATEGORY_CREATE = 'backoffice.guest_categories.create';
+    public const GUEST_CATEGORY_EDIT = 'backoffice.guest_categories.edit';
+    public const GUEST_CATEGORY_SHOW = 'backoffice.guest_categories.show';
+    public const GUEST_CATEGORY_DELETE = 'backoffice.guest_categories.delete';
+
     public const GUEST_USER_LIST = 'backoffice.guest_users.list';
 }

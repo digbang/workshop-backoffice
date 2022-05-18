@@ -91,6 +91,10 @@ return [
                         'icon' => 'group',
                         'action' => App\Http\Backoffice\Handlers\Roles\RoleListHandler::class,
                     ],
+                    'Guest Category' => [
+                        'icon' => 'group',
+                        'action' => App\Http\Backoffice\Handlers\GuestCategories\GuestCategoryListHandler::class,
+                    ],
                 ],
             ],
         ],

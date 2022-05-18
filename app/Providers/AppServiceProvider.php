@@ -18,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
         Repositories\PersistRepository::class => Doctrine\DoctrinePersistRepository::class,
 
         //Read Repositories
+        Repositories\GuestCategoryRepository::class => Doctrine\DoctrineGuestCategoryRepository::class,
 
         /* Example for environment specific implementations
         ExampleRepo::class => [
