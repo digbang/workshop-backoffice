@@ -38,8 +38,11 @@ return [
             ],
             'mappings' => [
                 Mappings\Embeddables\NameMapping::class,
+                Mappings\Embeddables\CountryMapping::class,
 
                 Mappings\UserMapping::class,
+                Mappings\GuestUserMapping::class,
+                Mappings\GuestCategoryMapping::class,
             ],
             /*
             |--------------------------------------------------------------------------

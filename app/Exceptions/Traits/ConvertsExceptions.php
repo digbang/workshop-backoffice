@@ -16,9 +16,9 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
-use WorkshopBackoffice\Exceptions\DomainException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
+use WorkshopBackoffice\Exceptions\DomainException;
 
 trait ConvertsExceptions
 {

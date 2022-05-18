@@ -22,4 +22,6 @@ final class Permission
     public const OPERATOR_EXPORT = 'backoffice.operators.export';
     public const OPERATOR_RESET_PASSWORD = 'backoffice.operators.reset-password';
     public const OPERATOR_RESEND_ACTIVATION = 'backoffice.operators.resend-activation';
+
+    public const GUEST_USER_LIST = 'backoffice.guest_users.list';
 }

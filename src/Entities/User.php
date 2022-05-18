@@ -8,11 +8,11 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use LaravelDoctrine\ORM\Auth\Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use WorkshopBackoffice\Immutables\Name;
 use WorkshopBackoffice\Payloads\UserPayload;
 use WorkshopBackoffice\Payloads\UserUpdatePayload;
 use WorkshopBackoffice\Utils\JWTSubjectable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User implements AuthenticatableContract, JWTSubject, CanResetPasswordContract
 {

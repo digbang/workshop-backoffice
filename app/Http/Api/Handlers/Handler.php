@@ -9,9 +9,9 @@ use Illuminate\Auth\AuthManager;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Routing\Controller as BaseHandler;
 use Lcobucci\JWT\Parser;
-use WorkshopBackoffice\Entities\User;
 use Tymon\JWTAuth\JWTAuth;
 use Tymon\JWTAuth\JWTGuard;
+use WorkshopBackoffice\Entities\User;
 
 abstract class Handler extends BaseHandler implements RouteDefiner
 {

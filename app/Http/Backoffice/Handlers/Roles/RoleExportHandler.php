@@ -13,8 +13,8 @@ use Digbang\Utils\Sorting;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Excel;
-use WorkshopBackoffice\Repositories\Criteria\Roles\RoleSorting;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use WorkshopBackoffice\Repositories\Criteria\Roles\RoleSorting;
 
 class RoleExportHandler extends Handler
 {
