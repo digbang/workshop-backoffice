@@ -95,6 +95,10 @@ return [
                         'icon' => 'group',
                         'action' => App\Http\Backoffice\Handlers\GuestCategories\GuestCategoryListHandler::class,
                     ],
+                    'Guest User' => [
+                        'icon' => 'user',
+                        'action' => App\Http\Backoffice\Handlers\GuestUsers\GuestUserListHandler::class,
+                    ],
                 ],
             ],
         ],

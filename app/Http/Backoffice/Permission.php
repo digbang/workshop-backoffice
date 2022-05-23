@@ -30,4 +30,8 @@ final class Permission
     public const GUEST_CATEGORY_DELETE = 'backoffice.guest_categories.delete';
 
     public const GUEST_USER_LIST = 'backoffice.guest_users.list';
+    public const GUEST_USER_CREATE = 'backoffice.guest_users.create';
+    public const GUEST_USER_EDIT = 'backoffice.guest_users.edit';
+    public const GUEST_USER_SHOW = 'backoffice.guest_users.show';
+    public const GUEST_USER_DELETE = 'backoffice.guest_users.delete';
 }

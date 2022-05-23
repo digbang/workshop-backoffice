@@ -9,5 +9,10 @@ return [
             'delete' => 'Category deleted successfully.',
             'bulkDelete' => 'Categories deleted successfully.',
         ],
+        'guestUser' => [
+            'create' => 'Guest User created successfully.',
+            'edit' => 'Guest User edited successfully.',
+            'delete' => 'Guest User deleted successfully.',
+        ],
     ]
 ];

@@ -6,6 +6,7 @@ use Digbang\DoctrineExtensions\Types\UuidType;
 use LaravelDoctrine\Fluent\EntityMapping;
 use LaravelDoctrine\Fluent\Fluent;
 use WorkshopBackoffice\Entities\GuestCategory;
+use WorkshopBackoffice\Entities\GuestUser;
 
 class GuestCategoryMapping extends EntityMapping
 {
@@ -19,5 +20,7 @@ class GuestCategoryMapping extends EntityMapping
         $builder->field(UuidType::UUID, 'id')->primary();
         $builder->string('name');
         $builder->timestamps('createdAt', 'updatedAt', 'chronosDateTime');
+        $builder->manyToMany(GuestUser::class, 'users')
+            ->mappedBy('categories');
     }
 }
