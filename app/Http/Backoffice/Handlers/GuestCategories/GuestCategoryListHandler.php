@@ -99,6 +99,7 @@ class GuestCategoryListHandler extends Handler
     private function buildListActions(Listing $list, GuestCategoryCriteriaRequest $request): void
     {
         $actions = backoffice()->actions();
+        $bulkActions = backoffice()->actions();
 
         try {
             $actions->link(
@@ -111,6 +112,7 @@ class GuestCategoryListHandler extends Handler
         } catch (SecurityException $e) { /* Do nothing */
         }
 
+        $list->setBulkActions($bulkActions, collect()->toArray());
         $list->setActions($actions);
 
         $rowActions = backoffice()->actions();
@@ -155,6 +157,18 @@ class GuestCategoryListHandler extends Handler
                 'title' => trans('backoffice::default.delete'),
             ]
         );
+
+        $actions = $bulkActions->dropdown(fa('gear') . ' Opciones', ['class' => 'btn btn-primary']);
+
+        try {
+            $actions->form(
+                url()->to(GuestCategoryBulkDeleteHandler::route()),
+                fa('fa-medkit') . ' Eliminar todos',
+                'DELETE',
+                ['class' => 'btn-link']
+            );
+        } catch (SecurityException $ex) { /* Nothing to do */
+        }
 
         $list->setRowActions($rowActions);
     }

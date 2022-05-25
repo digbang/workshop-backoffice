@@ -52,4 +52,13 @@ class GuestCategoryService
 
         $this->persistRepository->remove($category);
     }
+
+    public function bulkDelete(array $categoryIds): void
+    {
+        $categories = $this->guestCategoryRepository->findByIds($categoryIds);
+
+        foreach ($categories as $category) {
+            $this->persistRepository->remove($category);
+        }
+    }
 }

@@ -4,9 +4,10 @@ return [
 
     'backoffice' => [
         'guestCategory' => [
-            'create' => 'Guest Category created successfully.',
-            'edit' => 'Guest Category edited successfully.',
-            'delete' => 'Guest Category deleted successfully.',
+            'create' => 'Category created successfully.',
+            'edit' => 'Category edited successfully.',
+            'delete' => 'Category deleted successfully.',
+            'bulkDelete' => 'Categories deleted successfully.',
         ],
     ]
 ];

@@ -3,19 +3,19 @@
 return [
     'backoffice' => [
         'guestCategory' => [
-            'title' => 'Guest Category',
-            'plural' => 'Guest Categories',
+            'title' => 'Category',
+            'plural' => 'Categories',
             'fields' => [
                 'name' => 'Name',
                 'createdAt' => 'CreatedAt',
                 'updatedAt' => 'UpdatedAt',
             ],
             'new' => [
-                'category' => 'New Guest Category',
+                'category' => 'New Category',
             ],
-            'add' =>  'New Guest Category',
-            'edit' =>  'Edit Guest Category',
-            'list' => 'Guest Category List',
+            'add' =>  'New Category',
+            'edit' =>  'Edit Category',
+            'list' => 'Category List',
         ],
     ],
 ];
