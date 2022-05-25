@@ -13,7 +13,12 @@ class GuestCategoryDeleteHandler extends Handler
 {
     public function __invoke(GuestCategoryRequest $request, GuestCategoryService $service): \Illuminate\Http\RedirectResponse
     {
-        $service->delete($request->id());
+        try {
+            $service->delete($request->id());
+        } catch (\Exception $exception) {
+            return redirect()
+                ->to(url()->to(GuestCategoryListHandler::route()))->with('danger', $exception->getMessage());
+        }
 
         return redirect()
             ->to(url()->to(GuestCategoryListHandler::route()))->with('success', trans('messages.backoffice.guestCategory.delete'));

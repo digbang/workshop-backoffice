@@ -44,7 +44,7 @@ class GuestUserEditFormHandler extends Handler
             GuestUserEditRequest::WISH_TO_BE_CONTACTED => $user->isWishToBeContacted(),
             GuestUserEditRequest::CAN_BE_EDITED => $user->canBeEdited(),
             GuestUserEditRequest::PHONE_NUMBER => $user->getPhoneNumber(),
-            GuestUserEditRequest::RECORD => $user->getRecord(),
+            GuestUserEditRequest::COMMENTS => $user->getComments(),
             GuestUserCreateRequest::CATEGORIES . '[]' => array_map(fn (GuestCategory $category) => $category->getId()->toString(), $user->getCategories()),
         ]);
 
@@ -87,9 +87,8 @@ class GuestUserEditFormHandler extends Handler
 
         $inputs = $form->inputs();
         $otherInputs = $form->inputs()->collection();
-        $photoInput = $form->inputs()->collection();
         $recordInput = $form->inputs()->collection();
-        $contactInfoInputs = $form->inputs()->collection();
+        $profileInputs = $form->inputs()->collection();
 
         $categories = [];
         /** @var GuestCategory $category */
@@ -97,27 +96,25 @@ class GuestUserEditFormHandler extends Handler
             $categories[$category->getId()->toString()] = $category->getName();
         }
 
-        $inputs->text(GuestUserEditRequest::FIST_NAME, trans('labels.backoffice.guestUser.fields.firstName'))->setRequired();
-        $inputs->text(GuestUserEditRequest::LAST_NAME, trans('labels.backoffice.guestUser.fields.lastName'))->setRequired();
-        $inputs->dropdown(GuestUserCreateRequest::CATEGORIES . '[]', trans('labels.backoffice.guestUser.fields.categories'), $categories, ['multiple'])->setRequired();
-        $inputs->dropdown(GuestUserEditRequest::COUNTRY, trans('labels.backoffice.guestUser.fields.country'), Country::getAllValuesTranslated())->setRequired();
-        $otherInputs->textarea(GuestUserEditRequest::DESCRIPTION, trans('labels.backoffice.guestUser.fields.description'))->setRequired();
-        $otherInputs->date(GuestUserEditRequest::BIRTHDAY, trans('labels.backoffice.guestUser.fields.birthday'))->setRequired();
-        $otherInputs->string(GuestUserEditRequest::ADDRESS, trans('labels.backoffice.guestUser.fields.address'))->setRequired();
+        $profileInputs->text(GuestUserCreateRequest::FIST_NAME, trans('labels.backoffice.guestUser.fields.firstName'))->setRequired();
+        $profileInputs->text(GuestUserCreateRequest::LAST_NAME, trans('labels.backoffice.guestUser.fields.lastName'))->setRequired();
+        $profileInputs->dropdown(GuestUserCreateRequest::COUNTRY, trans('labels.backoffice.guestUser.fields.country'), Country::getAllValuesTranslated())->setRequired();
+        $profileInputs->dropdown(GuestUserCreateRequest::CATEGORIES . '[]', trans('labels.backoffice.guestUser.fields.categories'), $categories, ['multiple' => 'multiple'])->setRequired();
+        $otherInputs->textarea(GuestUserCreateRequest::DESCRIPTION, trans('labels.backoffice.guestUser.fields.description'))->setRequired();
+        $otherInputs->date(GuestUserCreateRequest::BIRTHDAY, trans('labels.backoffice.guestUser.fields.birthday'))->setRequired();
+        $otherInputs->string(GuestUserCreateRequest::ADDRESS, trans('labels.backoffice.guestUser.fields.address'))->setRequired();
         $otherInputs->literal('literal', trans('labels.backoffice.guestUser.fields.active'))->setRequired();
-        $otherInputs->boolean(GuestUserEditRequest::ACTIVE, trans('labels.backoffice.guestUser.fields.active'))->setRequired();
+        $otherInputs->boolean(GuestUserCreateRequest::ACTIVE, trans('labels.backoffice.guestUser.fields.active'))->setRequired();
         $otherInputs->literal('literal', trans('labels.backoffice.guestUser.fields.admissionDate'))->setRequired();
-        $otherInputs->datetime(GuestUserEditRequest::ADMISSION_DATE, trans('labels.backoffice.guestUser.fields.admissionDate'))->setRequired();
-        $inputs->checkbox(GuestUserEditRequest::WISH_TO_BE_CONTACTED, trans('labels.backoffice.guestUser.fields.wishToBeContacted'))->setRequired();
-        $inputs->checkbox(GuestUserEditRequest::CAN_BE_EDITED, trans('labels.backoffice.guestUser.fields.canBeEdited'))->setRequired();
-        $contactInfoInputs->integer(GuestUserEditRequest::PHONE_NUMBER, trans('labels.backoffice.guestUser.fields.phoneNumber'))->setRequired();
-        $recordInput->wysiwyg(GuestUserEditRequest::RECORD, trans('labels.backoffice.guestUser.fields.record'))->setRequired();
-        $photoInput->file(GuestUserEditRequest::PHOTO, trans('labels.backoffice.guestUser.fields.photo'))->setRequired();
+        $otherInputs->datetime(GuestUserCreateRequest::ADMISSION_DATE, trans('labels.backoffice.guestUser.fields.admissionDate'))->setRequired();
+        $profileInputs->checkbox(GuestUserCreateRequest::WISH_TO_BE_CONTACTED, trans('labels.backoffice.guestUser.fields.wishToBeContacted'))->setRequired();
+        $profileInputs->checkbox(GuestUserCreateRequest::CAN_BE_EDITED, trans('labels.backoffice.guestUser.fields.canBeEdited'))->setRequired();
+        $profileInputs->integer(GuestUserCreateRequest::PHONE_NUMBER, trans('labels.backoffice.guestUser.fields.phoneNumber'))->setRequired();
+        $recordInput->wysiwyg(GuestUserCreateRequest::COMMENTS, trans('labels.backoffice.guestUser.fields.comments'))->setRequired();
 
-        $inputs->composite('others', $otherInputs, 'Others');
-        $inputs->composite('', $photoInput, 'Photo');
-        $inputs->composite('', $recordInput, 'Record');
-        $inputs->composite('', $contactInfoInputs, 'Contact information');
+        $inputs->composite('', $profileInputs, 'Profile')->changeView('backoffice::inputs.labeled-composite');
+        $inputs->composite('others', $otherInputs, 'Others')->changeView('backoffice::inputs.labeled-composite');
+        $inputs->composite('', $recordInput, 'Comments');
 
         return $form;
     }

@@ -28,7 +28,7 @@ class GuestUser
     private bool $wishToBeContacted;
     private bool $canBeEdited;
     private int $phoneNumber;
-    private string $record;
+    private string $comments;
     private Collection $categories;
 
     public function __construct(GuestUserPayload $payload)
@@ -43,7 +43,7 @@ class GuestUser
         $this->admissionDate = $payload->admissionDate();
         $this->wishToBeContacted = $payload->wishToBeContacted();
         $this->phoneNumber = $payload->phoneNumber();
-        $this->record = $payload->record();
+        $this->comments = $payload->comments();
         $this->canBeEdited = $payload->canBeEdited();
         $this->categories = new ArrayCollection();
 
@@ -105,9 +105,9 @@ class GuestUser
         return $this->phoneNumber;
     }
 
-    public function getRecord(): string
+    public function getComments(): string
     {
-        return $this->record;
+        return $this->comments;
     }
 
     public function canBeEdited(): bool
@@ -124,7 +124,6 @@ class GuestUser
         foreach ($payload->categories() as $category) {
             $this->categories->add($category);
         }
-
         $this->updatedAt = Chronos::now();
     }
 

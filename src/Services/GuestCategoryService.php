@@ -50,6 +50,10 @@ class GuestCategoryService
     {
         $category = $this->find($id);
 
+        if ($category->hasUsers()) {
+            throw new \Exception('Cannot delete this category because it is associated with a user');
+        }
+
         $this->persistRepository->remove($category);
     }
 
@@ -57,8 +61,15 @@ class GuestCategoryService
     {
         $categories = $this->guestCategoryRepository->findByIds($categoryIds);
 
-        foreach ($categories as $category) {
-            $this->persistRepository->remove($category);
-        }
+        $this->persistRepository->transactional(function () use ($categories) {
+            /** @var GuestCategory $category */
+            foreach ($categories as $category) {
+                if ($category->hasUsers()) {
+                    throw new \Exception("Cannot delete {$category->getName()} category because it is associated with a user");
+                }
+
+                $this->persistRepository->remove($category);
+            }
+        });
     }
 }

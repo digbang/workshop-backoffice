@@ -30,7 +30,7 @@ class GuestUserMapping extends EntityMapping
         $builder->manyToMany(GuestCategory::class, 'categories')
             ->inversedBy('users');
         $builder->integer('phoneNumber');
-        $builder->string('record');
+        $builder->string('comments');
         $builder->chronosDateTime('birthdate');
         $builder->chronosDateTime('admissionDate');
         $builder->timestamps('createdAt', 'updatedAt', 'chronosDateTime');

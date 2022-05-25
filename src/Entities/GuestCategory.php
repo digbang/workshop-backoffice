@@ -43,6 +43,11 @@ class GuestCategory
         return $this->users->toArray();
     }
 
+    public function hasUsers(): bool
+    {
+        return $this->users->count() > 0;
+    }
+
     public function update(GuestCategoryPayload $payload): void
     {
         $this->name = $payload->name();

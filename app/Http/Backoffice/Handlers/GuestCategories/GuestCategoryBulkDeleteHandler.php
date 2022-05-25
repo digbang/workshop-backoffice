@@ -13,7 +13,12 @@ class GuestCategoryBulkDeleteHandler extends Handler
 {
     public function __invoke(GuestCategoryBulkDeleteRequest $request, GuestCategoryService $service): \Illuminate\Http\RedirectResponse
     {
-        $service->bulkDelete($request->categoryIds());
+        try {
+            $service->bulkDelete($request->categoryIds());
+        } catch (\Exception $exception) {
+            return redirect()
+                ->to(url()->to(GuestCategoryListHandler::route()))->with('danger', $exception->getMessage());
+        }
 
         return redirect()
             ->to(url()->to(GuestCategoryListHandler::route()))->with('success', trans('messages.backoffice.guestCategory.bulkDelete'));

@@ -28,7 +28,7 @@ interface GuestUserPayload
 
     public function phoneNumber(): int;
 
-    public function record(): string;
+    public function comments(): string;
 
     public function categories(): array;
 }

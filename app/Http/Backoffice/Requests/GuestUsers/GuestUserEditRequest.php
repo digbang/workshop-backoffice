@@ -26,10 +26,9 @@ class GuestUserEditRequest implements GuestUserPayload
     public const WISH_TO_BE_CONTACTED = 'wishToBeContacted';
     public const CAN_BE_EDITED = 'canBeEdited';
     public const PHONE_NUMBER = 'phoneNumber';
-    public const PHOTO = 'photo';
     public const COUNTRY = 'country';
     public const CATEGORIES = 'categories';
-    public const RECORD = 'record';
+    public const COMMENTS = 'comments';
 
     private Request $request;
     private GuestCategoryRepository $guestCategoryRepository;
@@ -89,7 +88,7 @@ class GuestUserEditRequest implements GuestUserPayload
 
     public function wishToBeContacted(): bool
     {
-        return $this->request->get(self::WISH_TO_BE_CONTACTED);
+        return (bool) $this->request->get(self::WISH_TO_BE_CONTACTED);
     }
 
     public function phoneNumber(): int
@@ -97,9 +96,9 @@ class GuestUserEditRequest implements GuestUserPayload
         return $this->request->get(self::PHONE_NUMBER);
     }
 
-    public function record(): string
+    public function comments(): string
     {
-        return $this->request->get(self::RECORD);
+        return $this->request->get(self::COMMENTS);
     }
 
     public function canBeEdited(): bool
@@ -127,9 +126,9 @@ class GuestUserEditRequest implements GuestUserPayload
             self::ADDRESS => 'required',
             self::ACTIVE => 'required',
             self::ADMISSION_DATE => 'required',
-            self::WISH_TO_BE_CONTACTED => 'required',
+            self::WISH_TO_BE_CONTACTED => 'boolean',
             self::PHONE_NUMBER => 'required',
-            self::RECORD => 'required',
+            self::COMMENTS => 'required',
             self::COUNTRY => 'required|in:' . implode(',', Country::getAllValues()),
         ];
 
