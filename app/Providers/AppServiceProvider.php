@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
 
         //Read Repositories
         Repositories\GuestCategoryRepository::class => Doctrine\DoctrineGuestCategoryRepository::class,
+        Repositories\GuestUserRepository::class => Doctrine\DoctrineGuestUserRepository::class,
 
         /* Example for environment specific implementations
         ExampleRepo::class => [
